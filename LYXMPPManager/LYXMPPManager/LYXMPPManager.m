@@ -264,4 +264,18 @@
     [self.delegete xmppManager:self didReceiveMessageWithMessage:message];
 }
 
+#pragma mark - 多点登录
+- (void)xmppStream:(XMPPStream *)sender didReceiveError:(DDXMLElement *)error
+{
+    if ([error.name isEqualToString:@"stream:error"] || [error.name isEqualToString:@"error"])
+    {
+        NSXMLElement *conflict = [error elementForName:@"conflict" xmlns:@"urn:ietf:params:xml:ns:xmpp-streams"];
+        if (conflict)
+        {
+            [self.delegete xmppManagerDidReceiveOtherDeviceLogin:self];
+        }
+    }
+}
+
+
 @end

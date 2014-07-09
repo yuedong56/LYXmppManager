@@ -78,5 +78,8 @@ typedef void(^CompletionBlock)();
 /** 接受到消息 */
 - (void)xmppManager:(LYXMPPManager *)manager didReceiveMessageWithMessage:(XMPPMessage *)message;
 
+/** 在其他设备上登录该账号（多点登录）*/
+- (void)xmppManagerDidReceiveOtherDeviceLogin:(LYXMPPManager *)manager;
+
 @end
 
